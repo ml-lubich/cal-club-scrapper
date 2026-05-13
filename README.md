@@ -35,6 +35,7 @@ flowchart LR
 - [Installation Steps](#installation-steps)
 - [Running the Scraper](#running-the-scraper)
 - [Sources](#sources)
+- [🗺️ Repository map](#️-repository-map)
 
 ## Parse algorithm
 
@@ -111,3 +112,19 @@ Can change the endpoint URL being scraped. Simply go to https://callink.berkeley
 * BeautifulSoup4 documentation: https://www.crummy.com/software/BeautifulSoup/bs4/doc/ 
 * Selenium documentation: https://selenium-python.readthedocs.io/ 
 * Website scraped: https://callink.berkeley.edu/ 
+
+
+## 🗺️ Repository map
+
+Top-level layout of `cal-club-scrapper` rendered as a Mermaid mindmap (auto-generated from the on-disk tree).
+
+```mermaid
+mindmap
+  root((cal-club-scrapper))
+    screenshots/
+      demo.png
+    files
+      LICENSE
+      README.md
+      requirements.txt
+```
