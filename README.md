@@ -29,10 +29,34 @@ flowchart LR
 ## Table of contents
 
 - [Output sample](#output-sample)
+- [Scrape loop (sequence)](#scrape-loop-sequence)
 - [Runtime Environment](#runtime-environment)
 - [Installation Steps](#installation-steps)
 - [Running the Scraper](#running-the-scraper)
 - [Sources](#sources)
+
+## Scrape loop (sequence)
+
+```mermaid
+sequenceDiagram
+    participant S as scraper.py
+    participant CD as chromedriver
+    participant CL as callink.berkeley.edu
+    participant BS as BeautifulSoup
+    participant CSV as clubs.csv
+
+    S->>CD: install + launch headless
+    S->>CL: GET /organizations
+    CL-->>S: club index HTML
+    loop per club link
+        S->>CL: GET /organization/&lt;id&gt;
+        CL-->>S: profile HTML
+        S->>BS: parse(html)
+        BS-->>S: name + email(s)
+        S->>CSV: append row
+    end
+    S->>CD: cleanup driver
+```
 
 ## Output sample
 
