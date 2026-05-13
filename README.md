@@ -30,10 +30,37 @@ flowchart LR
 
 - [Output sample](#output-sample)
 - [Scrape loop (sequence)](#scrape-loop-sequence)
+- [Parse algorithm](#parse-algorithm)
 - [Runtime Environment](#runtime-environment)
 - [Installation Steps](#installation-steps)
 - [Running the Scraper](#running-the-scraper)
 - [Sources](#sources)
+
+## Parse algorithm
+
+```mermaid
+flowchart LR
+    A([profile HTML])
+    B["BeautifulSoup(html)"]
+    C["find name node"]
+    D["find contact section"]
+    E["regex emails<br/>[A-Z0-9._%+-]+@[A-Z0-9.-]+"]
+    F{"emails found?"}
+    G["len > 1?"]
+    H["row = (name, [emails])"]
+    I["row = (name, email)"]
+    J["row = (name, '')"]
+    Z([append to clubs.csv])
+    A --> B --> C
+    B --> D --> E --> F
+    F -- yes --> G
+    G -- yes --> H --> Z
+    G -- no  --> I --> Z
+    F -- no  --> J --> Z
+    C --> H
+    C --> I
+    C --> J
+```
 
 ## Scrape loop (sequence)
 
@@ -49,7 +76,7 @@ sequenceDiagram
     S->>CL: GET /organizations
     CL-->>S: club index HTML
     loop per club link
-        S->>CL: GET /organization/&lt;id&gt;
+        S->>CL: GET /organization/(id)
         CL-->>S: profile HTML
         S->>BS: parse(html)
         BS-->>S: name + email(s)
