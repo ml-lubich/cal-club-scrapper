@@ -36,6 +36,7 @@ flowchart LR
 - [Running the Scraper](#running-the-scraper)
 - [Sources](#sources)
 - [🗺️ Repository map](#️-repository-map)
+- [📊 Code composition](#-code-composition)
 
 ## Parse algorithm
 
@@ -127,4 +128,18 @@ mindmap
       LICENSE
       README.md
       requirements.txt
+```
+
+
+## 📊 Code composition
+
+File-type breakdown of source under this repo (skips `.git`, `node_modules`, build caches, lockfiles).
+
+```mermaid
+pie showData title File-type composition of cal-club-scrapper (5 files)
+    "Python" : 1
+    "Image" : 1
+    "Other" : 1
+    "Text" : 1
+    "Markdown" : 1
 ```
