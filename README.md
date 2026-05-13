@@ -1,13 +1,47 @@
 # CalClubScraper
-Scrapes all the emails of UC Berkeley's (Cal) student organizations (clubs). Outputs a .csv of the clubs and contact email(s) per club like so:
+
+> Scrapes all the emails of UC Berkeley's (Cal) student organizations
+> (clubs). Outputs a CSV of clubs and contact email(s) per club.
+> Powered by [Selenium](https://www.selenium.dev/documentation/) and
+> [BeautifulSoup4](https://www.crummy.com/software/BeautifulSoup/bs4).
+
+```mermaid
+flowchart LR
+    URL[("🌐 callink.berkeley.edu<br/>/organizations")]
+    DRIVER["🤖 chromedriver<br/>(auto install/cleanup)"]
+    SEL["🕸 Selenium<br/>page rendering"]
+    BS["🍲 BeautifulSoup4<br/>HTML parse"]
+    SCRAPER{{"🔁 src/scraper.py<br/>walk clubs"}}
+    OUT[/"📄 clubs.csv<br/>name + email(s)"/]
+
+    URL --> DRIVER --> SEL --> BS --> SCRAPER --> OUT
+
+    classDef io fill:#0e1116,stroke:#2f81f7,stroke-width:1.5px,color:#e6edf3;
+    classDef tool fill:#161b22,stroke:#3fb950,stroke-width:1.5px,color:#e6edf3;
+    classDef brain fill:#161b22,stroke:#d29922,stroke-width:1.5px,color:#e6edf3;
+    classDef out fill:#0e1116,stroke:#a371f7,stroke-width:1.5px,color:#e6edf3;
+    class URL io;
+    class DRIVER,SEL,BS tool;
+    class SCRAPER brain;
+    class OUT out;
+```
+
+## Table of contents
+
+- [Output sample](#output-sample)
+- [Runtime Environment](#runtime-environment)
+- [Installation Steps](#installation-steps)
+- [Running the Scraper](#running-the-scraper)
+- [Sources](#sources)
+
+## Output sample
 
 ![](screenshots/demo.png)
 
 *Note: If there are more than 1 email, the entry is returned as a list of emails.*
-Powered by [Selenium](https://www.selenium.dev/documentation/) and [BeautifulSoup4](https://www.crummy.com/software/BeautifulSoup/bs4).
 
 ---
-## Runtime Enviornment
+## Runtime Environment
 CalClubScraper runs using `pip3` packages. You also would need Python 3.6+ `chromedriver` may be flagged by the security system of platforms like MacOS, causing the program to crash. All you need to do: go to Security Preferences and click "Allow" to open the chromedriver executable. *Note: `chromedriver` is installed and deleted automatically by the program at runtime.
 
 ---
